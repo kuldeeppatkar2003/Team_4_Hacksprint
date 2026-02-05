@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RSS Intelligence | AI-Powered News Analytics</title>
+    <!-- Modern Typography -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Marked.js for Chat Markdown -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <!-- Custom Styles -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- Sidebar Navigation -->
+    <aside class="sidebar">
+        <div class="logo">
+            <div class="logo-icon">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M4 11a9 9 0 0 1 9 9"></path>
+                    <path d="M4 4a16 16 0 0 1 16 16"></path>
+                    <circle cx="5" cy="19" r="1"></circle>
+                </svg>
+            </div>
+            <h2>RSS Intel</h2>
+        </div>
+
+        <nav class="nav-links">
+            <div class="nav-item active">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <rect x="3" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="3" width="7" height="7"></rect>
+                    <rect x="14" y="14" width="7" height="7"></rect>
+                    <rect x="3" y="14" width="7" height="7"></rect>
+                </svg>
+                Dashboard
+            </div>
+
+            <div class="sidebar-divider"></div>
+
+            <div class="sidebar-section">
+                <h3>Trending Intelligence</h3>
+                <div id="trending-topics" class="topic-list">
+                    <!-- Topics will be injected here -->
+                    <p style="font-size: 0.8rem; color: var(--text-dim);">Analyzing trends...</p>
+                </div>
+            </div>
+
+            <div class="sidebar-section">
+                <h3>Intelligence Matrix</h3>
+                <div id="intel-matrix" class="matrix-list">
+                    <!-- Matrix items will be injected here -->
+                </div>
+            </div>
+        </nav>
+    </aside>
+
+    <div class="main-wrapper">
+        <!-- Top Navigation Bar -->
+        <header class="top-bar">
+            <div class="search-container">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="11" cy="11" r="8"></circle>
+                    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                </svg>
+                <input type="text" id="search-input" placeholder="Search news articles...">
+            </div>
+            <div class="live-status">
+                <button id="refresh-btn" class="refresh-pill">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+                        stroke-linecap="round" stroke-linejoin="round">
+                        <path d="M23 4v6h-6"></path>
+                        <path d="M20.49 15a9 9 0 1 1-2.12-9.36L23 10"></path>
+                    </svg>
+                    Refresh
+                </button>
+                <div class="pulse"></div>
+                LIVE SYSTEM FEED
+            </div>
+        </header>
+
+        <!-- Dashboard Body -->
+        <main class="dashboard-content">
+            <!-- Left Column: News Feed -->
+            <section class="feed-section">
+                <!-- Filters -->
+                <div class="category-pills">
+                    <div class="pill active" data-category="all">All News</div>
+                    <div class="pill" data-category="india">India</div>
+                    <div class="pill" data-category="world">World</div>
+                    <div class="pill" data-category="technology">Technology</div>
+                    <div class="pill" data-category="financial">Business</div>
+                    <div class="pill" data-category="sports">Sports</div>
+                    <div class="pill" data-category="politics">Politics</div>
+                </div>
+
+                <div id="feed">
+                    <!-- Articles will be injected here by app.js -->
+                    <div style="text-align: center; padding: 3rem; color: var(--text-dim);">
+                        Loading intelligence feed...
+                    </div>
+                </div>
+            </section>
+
+            <!-- Right Column: Analytics & Chat -->
+            <aside class="analytics-section">
+                <!-- Stats Overview -->
+                <div class="glass-card">
+                    <div class="stats-row">
+                        <div class="stat-box">
+                            <div class="stat-label">Total News</div>
+                            <div class="stat-value" id="stat-total">0</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">Sentiment</div>
+                            <div class="stat-value" id="stat-sentiment" style="color: var(--accent);">Neutral</div>
+                        </div>
+                        <div class="stat-box">
+                            <div class="stat-label">Active</div>
+                            <div class="stat-value">30s</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sentiment Trend -->
+                <div class="glass-card">
+                    <div class="chat-header">
+                        <h3>Sentiment Analysis</h3>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="sentimentChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Category Breakdown -->
+                <div class="glass-card">
+                    <div class="chat-header">
+                        <h3>Domain Distribution</h3>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="categoryChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- Category Comparison Bar Chart -->
+                <div class="glass-card">
+                    <div class="chat-header">
+                        <h3>Sentiment by Category</h3>
+                    </div>
+                    <div class="chart-container">
+                        <canvas id="categoryBarChart"></canvas>
+                    </div>
+                </div>
+
+                <!-- AI Chatbot (Fixed to bottom of section or as a card) -->
+                <div class="glass-card chat-container">
+                    <div class="chat-header">
+                        <h3>AI News Analyst</h3>
+                        <p style="font-size: 0.75rem; color: var(--text-dim); margin-top: 0.25rem;">Ask about recent
+                            trends or summaries.</p>
+                    </div>
+                    <div id="chat-box" class="chat-messages">
+                        <div class="message bot">
+                            Hello! I've been monitoring the RSS feeds. Is there anything specific you'd like to analyze
+                            in today's news?
+                        </div>
+                    </div>
+                    <div class="chat-input-wrapper">
+                        <input type="text" id="user-input" placeholder="Ask AI Analyst...">
+                        <button class="chat-send-btn" onclick="dashboard.sendMessage()">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                                <line x1="22" y1="2" x2="11" y2="13"></line>
+                                <polyline points="22 2 15 22 11 13 2 9 22 2"></polyline>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+            </aside>
+        </main>
+    </div>
+
+    <!-- Application Script -->
+    <script src="app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,17 @@
+fastapi
+uvicorn
+websockets
+feedparser
+google-generativeai
+motor
+redis
+chromadb
+newspaper3k
+lxml_html_clean
+beautifulsoup4
+pydantic-settings
+python-dotenv
+pandas
+plotly
+jinja2
+python-multipart
