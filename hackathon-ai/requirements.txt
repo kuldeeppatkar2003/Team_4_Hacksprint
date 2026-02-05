@@ -1,0 +1,12 @@
+python-dotenv
+pydantic
+pydantic-settings
+openai
+pandas
+openpyxl
+google-generativeai
+groq
+pypdf
+chromadb
+sentence-transformers
+streamlit
